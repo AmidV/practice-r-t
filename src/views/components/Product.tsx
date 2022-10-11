@@ -12,11 +12,15 @@ export const Product = ({ product }: ProductProps) => {
     function detailsHandler() {
         return setDetails(!details)
     }
+
+
+    
     return (
     <div className={styles.card}>
         <img src={product.image} className={styles.cardImg} alt={product.title}/>
         <p>{product.title}</p>
         <p className={styles.cardPrice}>{ product.price }</p>
+        <p>Rate: <span style={{fontWeight: 'bold'}}>{product.rating.rate}</span></p>
 
        {!details && <button className={styles.cardBtn} onClick={detailsHandler}>Show Details</button>}
         {details && <p>{ product.description }</p>}

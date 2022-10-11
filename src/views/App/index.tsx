@@ -1,17 +1,30 @@
 import React from 'react';
+
+import { useProductsHook } from '../../hooks/productsHook';
+import CreateProduct from '../components/CreateProduct';
+import ErrorMessage from '../components/ErrorMessage';
+import Loader from '../components/Loader';
+import Modal from '../components/Modal';
 import { Product } from '../components/Product';
-
-import { products } from '../../data/stores/products';
-
 import styles from './index.module.scss';
 
 
 const App: React.FC = () => {
+
+  const { loading, error, products } = useProductsHook();
+  
   return (
     <article className={styles.container}>
-        <h1>Hello World!</h1>
-        <Product product={ products[0] }/>
-        <Product product={ products[1] }/>
+        {loading && <Loader />}
+
+        {error && <ErrorMessage error={error}/>}
+
+        <h1 style={{ textAlign: 'center'}}>Online Shop</h1>
+        {products.map(productSlot => <Product key={productSlot.id}  product={productSlot}/>)}
+
+        <Modal title='Create the Product'>
+            <CreateProduct />
+        </Modal>
     </article>
   )
 }
