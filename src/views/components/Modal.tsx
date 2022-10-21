@@ -2,10 +2,11 @@ import React from 'react';
 
 interface ModalProps {
     children: React.ReactNode,
-    title: string
+    title: string,
+    onClose: () => void
 }
 
-export default function Modal({ children, title }: ModalProps) {
+export default function Modal({ children, title, onClose }: ModalProps) {
   return (
     <>
         <div
@@ -18,6 +19,7 @@ export default function Modal({ children, title }: ModalProps) {
                 bottom: '0', 
                 left: '0' 
             }}
+            onClick={onClose}
         />
 
         <div
@@ -26,7 +28,7 @@ export default function Modal({ children, title }: ModalProps) {
                 background: 'white',
                 padding: '20px',
                 borderRadius: '3px',
-                position: 'absolute',
+                position: 'fixed',
                 top: '100px',
                 left: '50%',
                 transform: 'translateX(-50%)',

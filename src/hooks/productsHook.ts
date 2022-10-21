@@ -8,6 +8,10 @@ export const useProductsHook = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+
+    const addProduct = ( product: IProduct ) => {
+      setProducts(prev => [...prev, product]);
+    }
   
     async function fetchProducts() {
       try {
@@ -27,5 +31,5 @@ export const useProductsHook = () => {
       fetchProducts();
     }, []);
 
-    return { loading, error, products }
+    return { loading, error, products, addProduct }
 }
